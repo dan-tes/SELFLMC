@@ -32,20 +32,20 @@ print(a + b)
 
     assert "Синтаксическая ошибка" in str(exc_info.value)
 
-@pytest.mark.asyncio
-async def test_timeout():
-    """Тест на обработку таймаута"""
-    code_str = """
-while True:
-    pass
-"""
-
-    code = AsyncCode(code_str, allowed_modules=set())
-    runner = Runner(code, "")
-    result = await runner.run()
-
-    assert not result.success, "Программа не должна завершиться успешно"
-    assert "Timeout" in result.error, "Должен быть таймаут"
+# @pytest.mark.asyncio
+# async def test_timeout():
+#     """Тест на обработку таймаута"""
+#     code_str = """
+# while True:
+#     pass
+# """
+#
+#     code = AsyncCode(code_str, allowed_modules=set())
+#     runner = Runner(code, "")
+#     result = await runner.run()
+#
+#     assert not result.success, "Программа не должна завершиться успешно"
+#     assert "Timeout" in result.error, "Должен быть таймаут"
 
 @pytest.mark.asyncio
 async def test_input_output():

@@ -1,9 +1,11 @@
 import os
 from typing import final
+import dotenv
 
 
 @final
 class VarEnv:
+    dotenv.load_dotenv()
     DBUSER = os.environ.get("DBUSER")
     DBPASSWORD = os.environ.get("DBPASSWORD")
     DBHOST = os.environ.get("DBHOST")

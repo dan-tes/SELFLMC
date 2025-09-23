@@ -25,6 +25,9 @@ class DBALL(DatabaseTeachers, DatabaseStudents, DatabaseLessons, DatabaseTasks,
         self.db = db
         super().__init__(db_)
 
+    def get_engine(self):
+        return self.db.engine
+
     def get_obj_unique(self, cls, **kwargs):
         return self.db.select(sqlalchemy.select(cls).filter_by(**kwargs), types=self.db.any_)
 

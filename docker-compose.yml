@@ -3,7 +3,7 @@ services:
   api:
     build: .
     env_file:
-      - .env
+      - doc.env
     command:
       - "python"
       - "main.py"
@@ -16,7 +16,7 @@ services:
   test_container:
     build: .
     env_file:
-      - .env
+      - doc.env
     command:
       - "python"
       - "test_container.py"
@@ -28,10 +28,8 @@ services:
     image: postgres:16
     container_name: postgres_db
     restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: pgjdak
-      POSTGRES_DB: mydatabase
+    env_file:
+      - doc.env
     ports:
       - "5432:5432"
     volumes:

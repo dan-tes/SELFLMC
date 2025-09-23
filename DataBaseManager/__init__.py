@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, ForeignKey, and_
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship, Session
 from DataBaseManager.models import Base
+from utils.variable_environment import VarEnv
 
 
 class DataBaseManager:
@@ -9,7 +10,7 @@ class DataBaseManager:
     any_ = 1
 
     def __init__(self,
-                 db_url=f'postgresql://root:pgjdak@db:5432/mydatabase'):
+                 db_url=f'postgresql+psycopg2://{VarEnv.DBUSER}:{VarEnv.DBPASSWORD}@{VarEnv.DBHOST}/{VarEnv.DBNAME}'):
         """
         Инициализация подключения к БД:
         - db_url: строка подключения (например, 'sqlite:///mydatabase.db')

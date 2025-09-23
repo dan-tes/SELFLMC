@@ -1,3 +1,6 @@
+import sqlalchemy
+
+from DataBaseManager.models import Teachers, Students
 from tests import *
 
 

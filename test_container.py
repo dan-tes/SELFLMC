@@ -7,7 +7,7 @@ from utils.autotest import AsyncCode, Runner
 from utils.variable_environment import VarEnv
 
 
-class TestContainer:
+class Container:
     def __init__(self, db_url):
         self.engine = create_engine(db_url)
         self.Session = sessionmaker(bind=self.engine)
@@ -89,4 +89,4 @@ class TestContainer:
 
 if __name__ == "__main__":
     db_url = f'postgresql://root:pgjdak@db:5432/mydatabase'
-    asyncio.run(TestContainer(db_url).run())
+    asyncio.run(Container(db_url).run())

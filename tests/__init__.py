@@ -1,5 +1,7 @@
 import pytest
-from DataBaseManager.extends import *
+
+from DataBaseManager import DataBaseManager, db
+from DataBaseManager.extends import DBALL, Base
 
 
 # Очищаем данные из таблиц
@@ -10,7 +12,7 @@ from DataBaseManager.extends import *
 
 @pytest.fixture(scope="module", autouse=True)
 def setup_and_teardown():
-    Base.metadata.create_all(bind=db.engine)
+    Base.metadata.create_all(bind=DBALL().get_engine())
     DBALL().clear_all_data()
     yield
     DBALL().clear_all_data()
@@ -18,4 +20,4 @@ def setup_and_teardown():
 
 @pytest.fixture(scope="package", autouse=True)
 def database_all():
-    return DBALL(db)
+    return DBALL()
