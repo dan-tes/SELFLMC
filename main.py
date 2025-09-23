@@ -1,22 +1,17 @@
-from uuid import UUID
-
-import sqlalchemy
 import uvicorn
-from fastapi import FastAPI, Depends, Response, APIRouter
+from fastapi import FastAPI, APIRouter
 from fastapi.responses import JSONResponse, RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.staticfiles import StaticFiles
 
-from DataBaseManager import db
 from DataBaseManager.extends import DBALL
-from routers.auth.auntefication import SessionData, get_session_data, create_session_user, backend, cookie, \
-    AuthMiddleware
+from routers.auth.auntefication import AuthMiddleware
 from routers.auth.auth import router as auth_router
-from routers.students.students import router as student_router
-from routers.lessons.lessons import router as lessons_router
-from routers.tasks.tasks import router as tasks_router
 from routers.files.files import router as files_router
+from routers.lessons.lessons import router as lessons_router
 from routers.solutions.solutions import router as solutions_router
+from routers.students.students import router as student_router
+from routers.tasks.tasks import router as tasks_router
 from utils.variable_environment import VarEnv
 
 app = FastAPI()

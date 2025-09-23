@@ -86,6 +86,7 @@ class TestContainer:
             await asyncio.sleep(10)
             print("Проверка")
 
+
 if __name__ == "__main__":
-    db_url = f'postgresql+psycopg2://{VarEnv.DBUSER}:{VarEnv.DBPASSWORD}@{VarEnv.DBHOST}/{VarEnv.DBNAME}'
+    db_url = f'postgresql://root:pgjdak@db:5432/mydatabase'
     asyncio.run(TestContainer(db_url).run())

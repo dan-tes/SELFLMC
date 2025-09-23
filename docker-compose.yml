@@ -10,6 +10,8 @@ services:
     ports:
       - "8000:8000"
     restart: always
+    depends_on:
+      - db
 
   test_container:
     build: .
@@ -19,6 +21,25 @@ services:
       - "python"
       - "test_container.py"
     restart: always
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pgjdak
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 networks:
   default:
+    driver: bridge
+
+volumes:
+  postgres_data:
