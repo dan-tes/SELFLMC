@@ -28,8 +28,12 @@ services:
     image: postgres:16
     container_name: postgres_db
     restart: always
-    env_file:
-      - doc.env
+#    env_file:
+#      - doc.env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pgjdak
+      POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
     volumes:

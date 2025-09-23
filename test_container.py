@@ -4,12 +4,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from DataBaseManager.models import TeacherSolutions, StudentSolutions, Tasks
 from utils.autotest import AsyncCode, Runner
-from utils.variable_environment import VarEnv
-
+from DataBaseManager import db
 
 class Container:
-    def __init__(self, db_url):
-        self.engine = create_engine(db_url)
+    def __init__(self):
+        self.engine = db.engine
         self.Session = sessionmaker(bind=self.engine)
         self.allowed_modules = {'time', 'random', 'math', 'functools'}
 
@@ -89,4 +88,4 @@ class Container:
 
 if __name__ == "__main__":
     db_url = f'postgresql://root:pgjdak@db:5432/mydatabase'
-    asyncio.run(Container(db_url).run())
+    asyncio.run(Container().run())
